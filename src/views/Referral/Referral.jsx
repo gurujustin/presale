@@ -24,8 +24,13 @@ import { ethers, BigNumber } from "ethers";
 import { getAddress } from "@ethersproject/address";
 import rot13 from "src/encode";
 
-function Claim() {
+function Referral() {
   const { provider, address, connected, connect, chainID } = useWeb3Context();
+  
+  const paidReferral = useSelector(state => {
+    return state.account.referral && state.account.referral.paidReferral;
+  });
+  console.log('paidReferral', paidReferral)
   
   const [isCopied, setIsCopied] = useState(false);
 
@@ -36,7 +41,6 @@ function Claim() {
     }, 1000);
   };
 
-  console.log('debug', address)
   return (
     <div id="dashboard-view">
       <div className="presale-header">
@@ -59,12 +63,12 @@ function Claim() {
                         <Box mb="24px">
                             <Typography variant="body1" className="referral-link" color="textSecondary">
                             <>
-                              https://presale-olive.vercel.app/#/presale?ref={rot13(address)}
+                              http://localhost:3000/#/presale?ref={rot13(address)}
                             </>
                             </Typography>
                         </Box>
                         <Box>
-                            <CopyToClipboard text={`https://presale-olive.vercel.app/#/presale?ref=${rot13(address)}`} onCopy={onCopyText}>
+                            <CopyToClipboard text={`http://localhost:3000/#/presale?ref=${rot13(address)}`} onCopy={onCopyText}>
                                 <div className="copy-area">
                                     <Button
                                         className="copy-button"
@@ -76,10 +80,20 @@ function Claim() {
                                 </div>
                             </CopyToClipboard>
                         </Box>
+                        <Box mt="24px">
+                          <Typography variant="body1" className="referral-link" color="textSecondary">
+                            Total Paid for Referral
+                          </Typography>
+                        </Box>
+                        <Box mt="12px">
+                          <Typography variant="body1" className="referral-link" color="textSecondary">
+                              {paidReferral ? paidReferral : 0} $USDT
+                          </Typography>
+                        </Box>
                   </>
                 ) : (
                     <Box className="help-text">
-                      <Typography variant="body" className="stake-note" color="textSecondary">
+                      <Typography variant="alignCenter" className="stake-note" color="textSecondary">
                         <>
                           Connect Wallet to get your unique referral link.
                         </>
@@ -94,4 +108,4 @@ function Claim() {
   );
 }
 
-export default Claim;
+export default Referral;

@@ -41,6 +41,7 @@ export const loadAccountDetails = createAsyncThunk(
     let claimableAmount = 0;
     let totalPurchasedAmount = 0;
     let claimedAmount = 0;
+    let paidReferral = 0;
 
 
     const busdContract = new ethers.Contract(addresses[networkID].BUSD_ADDRESS as string, ierc20Abi, provider);
@@ -65,6 +66,7 @@ export const loadAccountDetails = createAsyncThunk(
     }
     const isPresaleOpen = await presaleContract.isPresaleOpen();
     totalPurchasedAmount = (await presaleContract.preBuys(address)).busdAmount;
+    paidReferral = await presaleContract.paidRefferal(address);
     if (!isPresaleOpen){
       claimableAmount = await presaleContract.getClaimableAmount(address);
       claimedAmount = (await presaleContract.preBuys(address)).pTokenClaimedAmount;
@@ -83,16 +85,9 @@ export const loadAccountDetails = createAsyncThunk(
         totalPurchasedAmount: ethers.utils.formatEther(totalPurchasedAmount),
         claimedAmount: ethers.utils.formatEther(claimedAmount),
       },
-      // staking: {
-      //   bhdStake: +stakeAllowance,
-      //   bhdUnstake: +unstakeAllowance,
-      // },
-      // bonding: {
-      //   daiAllowance: daiBondAllowance,
-      // },
-      // pooling: {
-      //   sbhdPool: +poolAllowance,
-      // },
+      referral: {
+        paidReferral: ethers.utils.formatEther(paidReferral)
+      }
     };
   },
 );

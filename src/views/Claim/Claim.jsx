@@ -47,7 +47,7 @@ function Claim() {
   const totalPurchasedAmount = useSelector(state => {
     return state.account.claim && state.account.claim.totalPurchasedAmount;
   });
-  // console.log('debug3', totalPurchasedAmount)
+  console.log('debug3', totalPurchasedAmount)
   const claimedAmount = useSelector(state => {
     return state.account.claim && state.account.claim.claimedAmount;
   });
