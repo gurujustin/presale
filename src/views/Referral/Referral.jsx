@@ -93,7 +93,7 @@ function Referral() {
                   </>
                 ) : (
                     <Box className="help-text">
-                      <Typography variant="alignCenter" className="stake-note" color="textSecondary">
+                      <Typography variant="body1" className="stake-note" color="textSecondary">
                         <>
                           Connect Wallet to get your unique referral link.
                         </>
