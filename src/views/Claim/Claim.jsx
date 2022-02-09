@@ -47,8 +47,12 @@ function Claim() {
   const totalPurchasedAmount = useSelector(state => {
     return state.account.claim && state.account.claim.totalPurchasedAmount;
   });
+  // console.log('debug3', totalPurchasedAmount)
   const claimedAmount = useSelector(state => {
     return state.account.claim && state.account.claim.claimedAmount;
+  });
+  const isPresaleOpen = useSelector(state => {
+    return state.app.isPresaleOpen;
   });
   const onChangeClaim = async action => {
     // eslint-disable-next-line no-restricted-globals
@@ -68,7 +72,7 @@ function Claim() {
   };
   const hasAllowance = useCallback(
     token => {
-      if (token === "pbhd") return claimAllowance > 0;
+      if (token === "battle") return claimAllowance > 0;
       return 0;
     },
     [claimAllowance],
@@ -78,7 +82,7 @@ function Claim() {
     <div id="dashboard-view">
       <div className="presale-header">
         <h1>Claim</h1>
-        <p>The vesting period will last for 4 weeks.</p>
+        {/* <p>The vesting period will last for 4 weeks.</p> */}
       </div>
       <Paper className={`ohm-card`}>
         <Grid container direction="column" spacing={2}>
@@ -98,7 +102,7 @@ function Claim() {
           <Grid item>
             <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
               <Typography className="presale-items">Total Purchased Amount:</Typography>
-              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{totalPurchasedAmount / 5} $OCTA</span></Typography>
+              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{totalPurchasedAmount / 0.01} $BATTLE</span></Typography>
             </div>
           </Grid>
         }
@@ -106,7 +110,7 @@ function Claim() {
           <Grid item>
             <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
               <Typography className="presale-items">Claimed Amount:</Typography>
-              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{claimedAmount} $OCTA</span></Typography>
+              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{claimedAmount} $BATTLE</span></Typography>
             </div>
           </Grid>
         }
@@ -114,7 +118,7 @@ function Claim() {
           <Grid item>
             <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
               <Typography className="presale-items">Claimable Amount:</Typography>
-              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{claimableAmount} $OCTA</span></Typography>
+              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{claimableAmount} $BATTLE</span></Typography>
             </div>
           </Grid>
         }
@@ -122,13 +126,13 @@ function Claim() {
           <div className="stake-top-metrics" style={{ whiteSpace: "normal" }}>
             <Box alignItems="center" justifyContent="center" flexDirection="column" display="flex">
               {address && !isAllowanceDataLoading ? (
-                !hasAllowance("pbhd") ? (
+                !hasAllowance("battle") ? (
                   <Box className="help-text">
                     <Typography variant="body1" className="stake-note" color="textSecondary">
                       <>
-                        First time use <b>$OCTA</b>?
+                        First time use <b>$BATTLE</b>?
                         <br />
-                        Please approve OctaNode to use your <b>$OCTA</b> for claim $OCTA.
+                        Please approve BattleRoyale to use your <b>$BATTLE</b> for claim $BATTLE.
                       </>
                     </Typography>
                   </Box>
@@ -161,9 +165,18 @@ function Claim() {
 
               {isAllowanceDataLoading ? (
                 <Skeleton width="45%" />
-              ) : address && hasAllowance("pbhd") ? (
+              ) : address && hasAllowance("battle") ? (
+                isPresaleOpen ? (
+                  <Box className="help-text">
+                    <Typography variant="body1" className="stake-note" color="textSecondary">
+                      <>
+                        You can claim after presale is finished.
+                      </>
+                    </Typography>
+                  </Box>
+                ) : (
                 <Box alignItems="center" justifyContent="center" flexDirection="column" display="flex">
-                  <Typography style={{marginTop: "16px"}}>20% each week at the public launch.</Typography>
+                  {/* <Typography style={{marginTop: "16px"}}>20% each week at the public launch.</Typography> */}
                   <Button
                     className="stake-button"
                     variant="contained"
@@ -176,7 +189,7 @@ function Claim() {
                   >
                     {txnButtonText(pendingTransactions, "claim", "Claim")}
                   </Button>
-                </Box>
+                </Box>)
               ) : (
                 <Box>
                   <Button
@@ -185,7 +198,7 @@ function Claim() {
                     color="primary"
                     disabled={isPendingTxn(pendingTransactions, "approve_claim")}
                     onClick={() => {
-                      onSeekApproval("pbhd");
+                      onSeekApproval("battle");
                     }}
                   >
                     {txnButtonText(pendingTransactions, "approve_claim", "Approve")}

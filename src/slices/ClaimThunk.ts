@@ -24,7 +24,7 @@ function alreadyApprovedToken(token: string, claimAllowance: BigNumber) {
   let applicableAllowance = bigZero;
 
   // determine which allowance to check
-  if (token === "pbhd") {
+  if (token === "battle") {
     applicableAllowance = claimAllowance;
   }
 
@@ -60,15 +60,15 @@ export const changeApproval = createAsyncThunk(
     }
 
     try {
-      if (token === "pbhd") {
+      if (token === "battle") {
         // won't run if stakeAllowance > 0
         approveTx = await pbhdContract.approve(
           addresses[networkID].PRESALE_ADDRESS,
-          ethers.utils.parseUnits("1000000000", "gwei").toString(),
+          ethers.utils.parseUnits("1000000000000000000", "gwei").toString(),
         );
       }
 
-      const text = "Approve pBHD";
+      const text = "Approve BATTLE";
       const pendingTxnType = "approve_claim";
       dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
 

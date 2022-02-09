@@ -1,0 +1,15 @@
+
+.copy-feedback {
+    margin-left: 1rem;
+    visibility: hidden;
+  }
+  
+.copy-feedback.active {
+    visibility: visible;
+  }
+.copy-button {
+    float: left;
+  }
+.referral-link {
+    overflow-wrap: anywhere;
+}

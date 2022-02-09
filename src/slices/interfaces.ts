@@ -30,6 +30,7 @@ export interface IActionValueAsyncThunk extends IValueAsyncThunk {
   readonly action: string;
   readonly callback?: () => void;
   readonly isOld?: boolean;
+  readonly ref_add: string;
 }
 
 export interface IBaseAddressAsyncThunk extends IBaseAsyncThunk {

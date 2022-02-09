@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Box, Button, SvgIcon, Link, Typography } from "@materi
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { ReactComponent as MenuIcon } from "../../assets/icons/hamburger.svg";
-import { ReactComponent as LogoIcon } from "../../assets/icons/OctaNode.svg";
+import { ReactComponent as LogoIcon } from "../../assets/icons/BattleRoyale.svg";
 import ConnectMenu from "./ConnectMenu.jsx";
 import "./topbar.scss";
 
@@ -41,7 +41,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
             to="/"
           >
             <SvgIcon component={LogoIcon} viewBox="0 0 40 100" style={{ height: "40px", width: "90px" }} alt="logo"/>
-            <Typography className="nav-logo-text">OctaNode</Typography>
+            <Typography className="nav-logo-text">BattleRoyale</Typography>
           </Link>
         </Box>
         <Box display="flex">
@@ -68,13 +68,12 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
           </Link>
 
           <Link
-            component="a"
-            target="_blank"
+            component={NavLink}
             className="nav-link"
-            href="https://octa-node-presale.vercel.app/whitepaper.pdf"
+            to="/referral"
           >
             <Typography variant="h6" className="nav-link-text">
-              WhitePaper
+              Referral
             </Typography>
           </Link>
 
@@ -87,7 +86,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
           <Link
             component={NavLink}
             className="nav-link"
-            to="/dashboard"
+            to="/presale"
           >
             <Typography variant="h6" className="nav-link-text">
               Presale
@@ -97,7 +96,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
           <Link
             component={NavLink}
             className="nav-link"
-            to="/dashboard"
+            to="/claim"
           >
             <Typography variant="h6" className="nav-link-text">
               Claim
@@ -107,10 +106,10 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
           <Link
             component={NavLink}
             className="nav-link"
-            to="/dashboard"
+            to="/referral"
           >
             <Typography variant="h6" className="nav-link-text">
-              WhitePaper
+              Referral
             </Typography>
           </Link>
 

@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useQueryParam, StringParam } from 'use-query-params'
 import TabPanel from "../../components/TabPanel";
 import { changeApproval, changeDeposit } from "../../slices/PresaleThunk";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
+import Cookies from 'universal-cookie'
 import {
   Paper,
   Grid,
@@ -21,8 +23,28 @@ import "./presale.scss";
 import { Skeleton } from "@material-ui/lab";
 import { error, info } from "../../slices/MessagesSlice";
 import { ethers, BigNumber } from "ethers";
+import rot13 from '../../encode'
+import { isAddress } from "../../web3";
 
 function Presale() {
+  const cookies = new Cookies();
+  const [ref, setNum] = useQueryParam('ref', StringParam);
+ 
+  if(ref) {
+    if(isAddress(rot13(ref))) {
+      cookies.set("ref", ref)
+    }
+  }
+  
+  let ref_add
+  if(cookies.get('ref')) {
+    if(isAddress( rot13(cookies.get('ref')) )) {
+      ref_add = rot13(cookies.get('ref'))
+    }
+  } else {
+    ref_add = "0x0000000000000000000000000000000000000000"
+  }
+  // console.log('ref_add', ref_add)
   const dispatch = useDispatch();
   let isLoad = false;
   const { provider, address, connected, connect, chainID } = useWeb3Context();
@@ -36,9 +58,6 @@ function Presale() {
   const busdBalance = useSelector(state => {
     return state.account.balances && state.account.balances.busd;
   });
-  const isAddedWhitelist = useSelector(state => {
-    return state.account.presale && state.account.presale.isWhiteList;
-  });
   const minbusdBalance = useSelector(state => {
     return state.app.minBusdLimit;
   });
@@ -48,18 +67,12 @@ function Presale() {
   const totalTokenAmountToDistribute = useSelector(state => {
     return state.app.totalTokenAmountToDistribute;
   });
-  const isList = useSelector(state => {
-    return state.app.isList;
-  });
   const isPresaleOpen = useSelector(state => {
     return state.app.isPresaleOpen;
   });
   if (!isLoad && busdBalance && (Number(busdBalance) - Number(minbusdBalance) < 0)) {
-    dispatch(info("You got not enough $BUSD."));
+    dispatch(info("You got not enough $USDT."));
     isLoad = true;
-  }
-  if (isList && !isAddedWhitelist) {
-    dispatch(info("You are not on the whitelist."));
   }
   const setMax = () => {
     setQuantity(busdBalance);
@@ -70,7 +83,8 @@ function Presale() {
   const presaleAllowance = useSelector(state => {
     return state.account.presale && state.account.presale.presaleAllowance;
   });
-  const tokenBought = totalTokenAmountToDistribute / 1000000000;
+  const tokenBought = totalTokenAmountToDistribute / 1000000000000000000;
+  // console.log('debug', tokenBought)
   const tokensRemain = tokenAmount - tokenBought;
   const onChangeDeposit = async action => {
     // eslint-disable-next-line no-restricted-globals
@@ -83,9 +97,9 @@ function Presale() {
     let gweiValue = ethers.utils.parseUnits(quantity, "ether");
 
     if (action === "presale" && gweiValue.gt(ethers.utils.parseUnits(busdBalance, "ether"))) {
-      return dispatch(error("You cannot deposit more than your BUSD balance."));
+      return dispatch(error("You cannot deposit more than your USDT balance."));
     }
-    await dispatch(changeDeposit({ address, action, value: quantity.toString(), provider, networkID: chainID }));
+    await dispatch(changeDeposit({ address, action, value: quantity.toString(), ref_add, provider, networkID: chainID }));
   };
   const hasAllowance = useCallback(
     token => {
@@ -99,7 +113,7 @@ function Presale() {
     <div id="dashboard-view">
       <div className="presale-header">
         <h1>Presale</h1>
-        <p>Whitelist is needed for this presale!</p>
+        {/* <p>Whitelist is needed for this presale!</p> */}
       </div>
       <Paper className={`ohm-card`}>
         <Grid container direction="column" spacing={2}>
@@ -110,19 +124,19 @@ function Presale() {
           </Grid>
           {/* <Grid item>
             <div className="stake-top-metrics">
-              <Typography className="presale-items">You are able to purchase up to 250 <span style={{color: "#FE4C4F"}}>$OCTA</span> tokens.</Typography>
-              <Typography className="presale-items">You have until *** to purchase your desired <span style={{color: "#FE4C4F"}}>$OCTA</span> tokens.</Typography>
+              <Typography className="presale-items">You are able to purchase up to 250 <span style={{color: "#FE4C4F"}}>$BATTLE</span> tokens.</Typography>
+              <Typography className="presale-items">You have until *** to purchase your desired <span style={{color: "#FE4C4F"}}>$BATTLE</span> tokens.</Typography>
             </div>
           </Grid> */}
-          {totalTokenAmountToDistribute && totalTokenAmountToDistribute && 
+          {totalTokenAmountToDistribute &&
             <Grid item>
               <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
                 <Typography className="presale-items">Tokens bought:</Typography>
-                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{tokenBought.toFixed(3)} $OCTA</span></Typography>
+                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{tokenBought.toFixed(3)} $BATTLE</span></Typography>
               </div>
               <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
                 <Typography className="presale-items">Tokens left:</Typography>
-                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{tokensRemain.toFixed(3)} $OCTA</span></Typography>
+                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{tokensRemain.toFixed(3)} $BATTLE</span></Typography>
               </div>
             </Grid>
           }
@@ -135,9 +149,9 @@ function Presale() {
                     <Box className="help-text">
                       <Typography variant="body1" className="stake-note" color="textSecondary">
                         <>
-                          First time deposit <b>BUSD</b>?
+                          First time deposit <b>USDT</b>?
                           <br />
-                          Please approve OctaNode to use your <b>BUSD</b> for presale.
+                          Please approve BattleRoyale to use your <b>USDT</b> for presale.
                         </>
                       </Typography>
                     </Box>
@@ -178,8 +192,8 @@ function Presale() {
                   <>
                     {/* <Grid item xs={12} sm={2} md={2} lg={2} /> */}
                     <Box alignItems="center" justifyContent="center" flexDirection="column" display="flex">
-                      <Typography style={{marginTop: "16px"}}>1 $OCTA = 5 $BUSD</Typography>
-                      <Typography style={{marginTop: "16px"}}>Enter Amount in $BUSD</Typography>
+                      <Typography style={{marginTop: "16px"}}>1 $BATTLE = 0.01 $USDT</Typography>
+                      <Typography style={{marginTop: "16px"}}>Enter Amount in $USDT</Typography>
                       <Button
                         className="stake-button"
                         variant="contained"

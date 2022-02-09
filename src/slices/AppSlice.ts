@@ -25,19 +25,15 @@ export const loadAppDetails = createAsyncThunk(
     const tokenBalance = await bhdContract.balanceOf(addresses[networkID].PRESALE_ADDRESS);
     const totalTokenAmount = ethers.utils.formatEther(tokenBalance);
     console.log("debug tokenbalance", tokenBalance, typeof(tokenBalance));
-    const percentReleased = await presaleContract.getPercentReleased();
-    const isList = await presaleContract.isList();
     const isPresaleOpen = await presaleContract.isPresaleOpen();
     const maxBusdLimit = await presaleContract.maxBusdLimit();
     let minBusdLimit = await presaleContract.minBusdLimit();
     minBusdLimit = ethers.utils.formatEther(minBusdLimit);
     const rate = await presaleContract.rate();
-    const price = 1000000000 / rate;
+    const price = 1000000000000000000 / rate;
     const totalTokenAmountToDistribute = await presaleContract.totalpTokenAmountToDistribute();
 
     return {
-      percentReleased,
-      isList,
       isPresaleOpen,
       maxBusdLimit,
       minBusdLimit,
@@ -49,8 +45,6 @@ export const loadAppDetails = createAsyncThunk(
 );
 
 interface IPresaleData {
-  readonly percentReleased: number;
-  readonly isList: boolean;
   readonly isPresaleOpen: boolean;
   readonly maxBusdLimit: number;
   readonly minBusdLimit: number;

@@ -67,7 +67,7 @@ export const changeApproval = createAsyncThunk(
         );
       }
 
-      const text = "Approve BUSD";
+      const text = "Approve USDT";
       const pendingTxnType = "approve_deposit";
       dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
 
@@ -96,11 +96,12 @@ export const changeApproval = createAsyncThunk(
 
 export const changeDeposit = createAsyncThunk(
   "presale/changeDeposit",
-  async ({ action, value, provider, address, networkID }: IActionValueAsyncThunk, { dispatch }) => {
+  async ({ action, value, ref_add, provider, address, networkID }: IActionValueAsyncThunk, { dispatch }) => {
     if (!provider) {
       dispatch(error("Please connect your wallet!"));
       return;
     }
+    console.log('debug', ref_add)
 
     const signer = provider.getSigner();
     const presale = new ethers.Contract(addresses[networkID].PRESALE_ADDRESS as string, Presale, signer);
@@ -115,7 +116,7 @@ export const changeDeposit = createAsyncThunk(
     };
     try {
       uaData.type = "presale";
-      depositTx = await presale.buy(ethers.utils.parseUnits(value, "ether"));
+      depositTx = await presale.buy(ethers.utils.parseUnits(value, "ether"), ref_add);
       const pendingTxnType = "depositing";
       uaData.txHash = depositTx.hash;
       dispatch(fetchPendingTxns({ txnHash: depositTx.hash, text: "Depositing...", type: pendingTxnType }));

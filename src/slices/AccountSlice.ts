@@ -41,7 +41,6 @@ export const loadAccountDetails = createAsyncThunk(
     let claimableAmount = 0;
     let totalPurchasedAmount = 0;
     let claimedAmount = 0;
-    let isAddedWhitelist = false;
 
 
     const busdContract = new ethers.Contract(addresses[networkID].BUSD_ADDRESS as string, ierc20Abi, provider);
@@ -64,8 +63,6 @@ export const loadAccountDetails = createAsyncThunk(
     if (addresses[networkID].TOKEN_ADDRESS) {
       claimAllowance = await bhdContract.allowance(address, addresses[networkID].PRESALE_ADDRESS);
     }
-    isAddedWhitelist = await presaleContract.whiteListed(address);
-    console.log("debugwhitelist", isAddedWhitelist);
     const isPresaleOpen = await presaleContract.isPresaleOpen();
     if (!isPresaleOpen){
       claimableAmount = await presaleContract.getClaimableAmount(address);
@@ -79,7 +76,6 @@ export const loadAccountDetails = createAsyncThunk(
       },
       presale: {
         presaleAllowance: +presaleAllowance,
-        isWhiteList: isAddedWhitelist,
       },
       claim: {
         claimAllowance: +claimAllowance,

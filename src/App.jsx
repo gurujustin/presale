@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { QueryParamProvider } from 'use-query-params'
 import useTheme from "./hooks/useTheme";
 import { useAddress, useWeb3Context } from "./hooks/web3Context";
 import { storeQueryParameters } from "./helpers/QueryParameterHelper";
@@ -20,6 +21,7 @@ import Messages from "./components/Messages/Messages";
 import NotFound from "./views/404/NotFound";
 import Presale from "./views/Presale/Presale";
 import Claim from "./views/Claim/Claim";
+import Referral from "./views/Referral/Referral";
 
 import { dark as darkTheme } from "./themes/dark.js";
 import "./style.scss";
@@ -145,7 +147,7 @@ function App() {
     // We want to ensure that we are storing the UTM parameters for later, even if the user follows links
     storeQueryParameters();
     // if (shouldTriggerSafetyCheck()) {
-    //   dispatch(info("Safety Check: Always verify you're on octanode presale!"));
+    //   dispatch(info("Safety Check: Always verify you're on BattleRoyale presale!"));
     // }
   }, []);
 
@@ -209,6 +211,7 @@ function App() {
   }, [walletChecked]);
   return (
     <ThemeProvider theme={themeMode}>
+    <QueryParamProvider ReactRouterRoute={Route}>
       <CssBaseline />
       {/* {isAppLoading && <LoadingSplash />} */}
       <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} dark`}>
@@ -232,11 +235,16 @@ function App() {
             <Route path="/claim">
               <Claim />
             </Route>
+            
+            <Route path="/referral">
+              <Referral />
+            </Route>
 
             <Route component={NotFound} />
           </Switch>
         </div>
       </div>
+      </QueryParamProvider>
     </ThemeProvider>
   );
 }
