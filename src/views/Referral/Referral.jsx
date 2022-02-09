@@ -59,12 +59,12 @@ function Claim() {
                         <Box mb="24px">
                             <Typography variant="body1" className="referral-link" color="textSecondary">
                             <>
-                                http://localhost:3000/#/presale?ref={rot13(address)}
+                              https://presale-olive.vercel.app/#/presale?ref={rot13(address)}
                             </>
                             </Typography>
                         </Box>
                         <Box>
-                            <CopyToClipboard text={`http://localhost:3000/#/presale?ref=${rot13(address)}`} onCopy={onCopyText}>
+                            <CopyToClipboard text={`https://presale-olive.vercel.app/#/presale?ref=${rot13(address)}`} onCopy={onCopyText}>
                                 <div className="copy-area">
                                     <Button
                                         className="copy-button"
