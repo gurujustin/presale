@@ -64,9 +64,9 @@ export const loadAccountDetails = createAsyncThunk(
       claimAllowance = await bhdContract.allowance(address, addresses[networkID].PRESALE_ADDRESS);
     }
     const isPresaleOpen = await presaleContract.isPresaleOpen();
+    totalPurchasedAmount = (await presaleContract.preBuys(address)).busdAmount;
     if (!isPresaleOpen){
       claimableAmount = await presaleContract.getClaimableAmount(address);
-      totalPurchasedAmount = (await presaleContract.preBuys(address)).busdAmount;
       claimedAmount = (await presaleContract.preBuys(address)).pTokenClaimedAmount;
     }
     return {
