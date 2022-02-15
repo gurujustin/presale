@@ -95,14 +95,14 @@ function Claim() {
         {/* <Grid item>
           <div className="stake-top-metrics" style={{marginBottom: "18px"}}>
             <Typography className="presale-items">20% each week at the public launch.</Typography>
-            <Typography className="presale-items">So after the Presale <span style={{color: "#FE4C4F"}}>20%</span>.</Typography>
+            <Typography className="presale-items">So after the Presale <span style={{color: "#adc6ff"}}>20%</span>.</Typography>
           </div>
         </Grid> */}
         {totalPurchasedAmount && 
           <Grid item>
             <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
               <Typography className="presale-items">Total Purchased Amount:</Typography>
-              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{totalPurchasedAmount / 0.01} $BATTLE</span></Typography>
+              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{totalPurchasedAmount / 0.01} $BATTLE</span></Typography>
             </div>
           </Grid>
         }
@@ -110,7 +110,7 @@ function Claim() {
           <Grid item>
             <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
               <Typography className="presale-items">Claimed Amount:</Typography>
-              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{claimedAmount} $BATTLE</span></Typography>
+              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{claimedAmount} $BATTLE</span></Typography>
             </div>
           </Grid>
         }
@@ -118,7 +118,7 @@ function Claim() {
           <Grid item>
             <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
               <Typography className="presale-items">Claimable Amount:</Typography>
-              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{claimableAmount} $BATTLE</span></Typography>
+              <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{claimableAmount} $BATTLE</span></Typography>
             </div>
           </Grid>
         }

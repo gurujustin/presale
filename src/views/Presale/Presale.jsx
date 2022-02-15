@@ -113,7 +113,7 @@ function Presale() {
     <div id="dashboard-view">
       <div className="presale-header">
         <h1>Presale</h1>
-        {/* <p>Whitelist is needed for this presale!</p> */}
+        {/* <p>Limit per user : 5,000,000 $BATTLE</p> */}
       </div>
       <Paper className={`ohm-card`}>
         <Grid container direction="column" spacing={2}>
@@ -124,19 +124,19 @@ function Presale() {
           </Grid>
           {/* <Grid item>
             <div className="stake-top-metrics">
-              <Typography className="presale-items">You are able to purchase up to 250 <span style={{color: "#FE4C4F"}}>$BATTLE</span> tokens.</Typography>
-              <Typography className="presale-items">You have until *** to purchase your desired <span style={{color: "#FE4C4F"}}>$BATTLE</span> tokens.</Typography>
+              <Typography className="presale-items">You are able to purchase up to 250 <span style={{color: "#adc6ff"}}>$BATTLE</span> tokens.</Typography>
+              <Typography className="presale-items">You have until *** to purchase your desired <span style={{color: "#adc6ff"}}>$BATTLE</span> tokens.</Typography>
             </div>
           </Grid> */}
           {totalTokenAmountToDistribute &&
             <Grid item>
               <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
                 <Typography className="presale-items">Tokens bought:</Typography>
-                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{tokenBought.toFixed(3)} $BATTLE</span></Typography>
+                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{tokenBought.toFixed(3)} $BATTLE</span></Typography>
               </div>
               <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
                 <Typography className="presale-items">Tokens left:</Typography>
-                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#FE4C4F"}}>{tokensRemain.toFixed(3)} $BATTLE</span></Typography>
+                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{tokensRemain.toFixed(3)} $BATTLE</span></Typography>
               </div>
             </Grid>
           }

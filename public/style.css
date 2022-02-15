@@ -21,7 +21,7 @@
 	background: -o-linear-gradient(top, #FFF3E1 0%, #FFDFAD 100%);
 	background: -webkit-gradient(linear, left top, left bottom, from(#FFF3E1), to(#FFDFAD));
 	background: linear-gradient(180deg, #e1e6ff 0%, #adf4ff 100%);
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 	-webkit-box-shadow: inset -9px -12px 25px -3px rgba(255, 255, 255, 0.24);
 	box-shadow: inset -9px -12px 25px -3px rgba(255, 255, 255, 0.24);
 	border-radius: 10px;
@@ -37,7 +37,7 @@
 	color: #161616;
 	height: 41px;
 	width: 172px;
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 	min-width: auto;
 	margin-bottom: 12px;
 	-webkit-transition: .3s;
@@ -97,7 +97,7 @@
 }
 
 .app.light #ohm-menu-button {
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 5px;
@@ -112,7 +112,7 @@
 }
 
 .app.light .dapp-topbar button {
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 5px;
@@ -248,7 +248,7 @@
 */
 
 .app.dark {
-	background: #111520;
+	background: #000000;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
 	/* -webkit-box-shadow: 7px 11px 63px rgba(255, 153, 0, 0.1);
@@ -257,11 +257,11 @@
 }
 
 .app.dark .MuiPaper-root.ohm-card {
-	background: #111520;
-	border: 1.5px solid #FE4C4F;
+	background: #000000;
+	border: 1.5px solid #adc6ff;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
-	border-radius: 10px;
+	border-radius: 30px;
 }
 
 .app.dark .stake-wallet-notification .wallet-menu .connect-button {
@@ -272,7 +272,7 @@
 	color: #fff;
 	height: 41px;
 	width: 172px;
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 	min-width: auto;
 	font-weight: 400;
 	margin-bottom: 12px;
@@ -289,7 +289,7 @@
 
 .app.dark .MuiDrawer-paper {
 	background: #0C0C0C;
-	border-right: 1.5px solid #FE4C4F;
+	border-right: 1.5px solid #adc6ff;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
 	/* -webkit-box-shadow: 7px 11px 63px rgba(255, 153, 0, 0.1);
@@ -310,12 +310,12 @@
 }
 
 .MuiButton-containedPrimary:hover {
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 }
 
 .app.dark .stake-top-metrics h4 {
 	font-weight: 500;
-	color: #FE4C4F;
+	color: #adc6ff;
 }
 
 .app.dark #treasury-dashboard-view .hero-metrics .ohm-card h5 {
@@ -360,11 +360,11 @@
 }
 
 .app.dark #ohm-menu-button {
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 5px;
-	background: #111520;
+	background: #000000;
 }
 .app.dark #ohm-menu-button:hover path{
 	fill: #fff;
@@ -376,7 +376,7 @@
 }
 
 .app.dark .dapp-topbar button {
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 5px;
@@ -385,7 +385,7 @@
 	-webkit-transition: .3s;
 	-o-transition: .3s;
 	transition: .3s;
-	background: #111520;
+	background: #000000;
 }
 
 .app.dark .pending-txn-container .MuiButton-label span {
@@ -395,7 +395,7 @@
 .app.dark .MuiTypography-body1 {
 	font-size: 18px;
 	font-weight: 400;
-	color: #FE4C4F;
+	color: #adc6ff;
 }
 
 .app.dark .MuiSkeleton-text {
@@ -445,7 +445,7 @@
 .app.dark .MuiButton-outlinedPrimary {
 	/* background: #000; */
 	color: #fff;
-	border: 1.5px solid #FE4C4F;
+	border: 1.5px solid #adc6ff;
 }
 
 .app.dark .MuiButton-outlinedPrimary:hover {
@@ -513,7 +513,7 @@
 
 .app.dark .dapp-topbar .MuiButton-containedSecondary:hover {
 	background-color: transparent;
-	border: 2px solid #FF4C4F;
+	border: 2px solid #98a8ff;
 }
 
 

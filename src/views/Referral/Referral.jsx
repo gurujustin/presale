@@ -1,27 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useSelector, useDispatch } from "react-redux";
-import TabPanel from "../../components/TabPanel";
-import { changeApproval, changeClaim } from "../../slices/ClaimThunk";
+import { useSelector } from "react-redux";
 import { useWeb3Context } from "src/hooks/web3Context";
 import {
   Paper,
   Grid,
   Typography,
   Box,
-  Zoom,
   Button,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-  InputAdornment,
 } from "@material-ui/core";
-import { trim } from "../../helpers";
 import "./referral.scss";
-import { Skeleton } from "@material-ui/lab";
-import { error } from "../../slices/MessagesSlice";
-import { ethers, BigNumber } from "ethers";
-import { getAddress } from "@ethersproject/address";
 import rot13 from "src/encode";
 
 function Referral() {
@@ -30,7 +18,7 @@ function Referral() {
   const paidReferral = useSelector(state => {
     return state.account.referral && state.account.referral.paidReferral;
   });
-  console.log('paidReferral', paidReferral)
+  // console.log('paidReferral', paidReferral)
   
   const [isCopied, setIsCopied] = useState(false);
 

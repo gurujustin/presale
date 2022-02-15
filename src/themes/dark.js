@@ -7,13 +7,13 @@ import commonSettings from "./global.js";
 
 const darkTheme = {
   color: "#FCFCFC",
-  gold: "#FE4C4F",
+  gold: "#adc6ff",
   gray: "#A3A3A3",
   textHighlightColor: "#F4D092",
   backgroundColor: "#353E55df",
   background: `#fff
     `,
-  paperBg: "#111520",
+  paperBg: "#000000",
   modalBg: "#24242699",
   popoverBg: "rgba(54, 56, 64, 0.99)",
   menuBg: "#36384080",

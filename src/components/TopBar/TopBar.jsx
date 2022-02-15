@@ -40,8 +40,8 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
             className="nav-logo"
             to="/"
           >
-            <SvgIcon component={LogoIcon} viewBox="0 0 40 100" style={{ height: "40px", width: "90px" }} alt="logo"/>
-            <Typography className="nav-logo-text">BattleRoyale</Typography>
+            <SvgIcon component={LogoIcon} viewBox="0 0 1080 864" style={{ height: "120px", width: "200px" }} alt="logo"/>
+            {/* <Typography className="nav-logo-text">BattleRoyale</Typography> */}
           </Link>
         </Box>
         <Box display="flex">

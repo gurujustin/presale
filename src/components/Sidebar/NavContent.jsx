@@ -39,8 +39,8 @@ function NavContent() {
               to="/"
               style={{width: "294px"}}
             >
-              <SvgIcon component={LogoIcon} viewBox="0 0 40 100" style={{ height: "30px", width: "68px" }} alt="logo"/>
-              <Typography className="footer-logo-text">BattleRoyale</Typography>
+              <SvgIcon component={LogoIcon} viewBox="0 0 1080 864" style={{ height: "60px", width: "150px" }} alt="logo"/>
+              {/* <Typography className="footer-logo-text">BattleRoyale</Typography> */}
             </Link>
             <div />
           </Box>
