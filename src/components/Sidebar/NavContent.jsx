@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
+import { ReactComponent as TelegramIcon } from "../../assets/icons/telegram.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as LogoIcon } from "../../assets/icons/BattleRoyale.svg";
 import { trim, shorten } from "../../helpers";
@@ -50,10 +50,10 @@ function NavContent() {
           </Box>
           <Box display="flex" justifyContent={"space-around"} mt="8px">
             <div style={{width: "180px"}}>
-              <Link href="https://discord.gg/BattleRoyale" target="_blank" component="a">
-                <SvgIcon color="primary" component={DiscordIcon} />
+              <Link href="https://t.me/BattleRoyaleGroup" target="_blank" component="a">
+                <SvgIcon color="primary" component={TelegramIcon} />
               </Link>
-              <Link href="https://twitter.com/@BattleRoyale" target="_blank" component="a" style={{marginLeft: "8px"}}>
+              <Link href="https://twitter.com/BattleRoyaleLtd" target="_blank" component="a" style={{marginLeft: "8px"}}>
                 <SvgIcon color="primary" component={TwitterIcon} />
               </Link>
             </div>
